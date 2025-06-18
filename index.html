@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结直肠癌筛查知识学习模块</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: #f8f9fa;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab:hover {
+            background: #e9ecef;
+            color: #3498db;
+        }
+        
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .fit-demo {
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .quiz-container {
+            background: #f0f8ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .question {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .question h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .options li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .options li:hover {
+            background: #e9ecef;
+        }
+        
+        .video-placeholder {
+            background: #000;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .guideline-ref {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #fdcb6e;
+        }
+        
+        .algorithm {
+            background: #e8f4fd;
+            border: 2px solid #74b9ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .arrow {
+            font-size: 2rem;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .result-interpretation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .result-card {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .positive {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .negative {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 结直肠癌筛查知识学习模块</h1>
+            <p>医务人员专业培训平台</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('basics')">基础知识</button>
+            <button class="nav-tab" onclick="showTab('screening')">筛查技术</button>
+            <button class="nav-tab" onclick="showTab('guidelines')">指南解读</button>
+            <button class="nav-tab" onclick="showTab('quiz')">知识测试</button>
+        </div>
+        
+        <div class="content">
+            <!-- 基础知识模块 -->
+            <div id="basics" class="tab-content active">
+                <h2 class="section-title">结直肠癌基础知识</h2>
+                
+                <div class="highlight-box">
+                    📊 中国结直肠癌位居恶性肿瘤发病率第2位，死亡率第5位
+                </div>
+                
+                <div class="card">
+                    <h3>🌍 流行病学现状</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">555,477</div>
+                            <div>2020年中国新发病例</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">286,162</div>
+                            <div>2020年中国死亡病例</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">12.2%</div>
+                            <div>占全部恶性肿瘤比例</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">17.12</div>
+                            <div>世标发病率(/10万)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>📈 发病趋势特点</h3>
+                    <p><strong>全国趋势：</strong>1972-2019年发病率从2.75/10万增至19.39/10万</p>
+                    <p><strong>城乡差异：</strong>城市发病率高于农村，但农村增长幅度较大</p>
+                    <p><strong>性别差异：</strong>男性发病率高于女性，男女比例约1.5:1</p>
+                    <p><strong>年龄特点：</strong>发病率随年龄增长而上升，50岁后快速增长</p>
+                </div>
+                
+                <div class="card">
+                    <h3>⚠️ 主要危险因素</h3>
+                    <ul>
+                        <li><strong>不可改变因素：</strong>年龄增长、男性、结直肠癌家族史、炎症性肠病史</li>
+                        <li><strong>生活方式因素：</strong>高脂低纤维饮食、红肉及加工肉类摄入过多</li>
+                        <li><strong>行为因素：</strong>吸烟、过量饮酒、肥胖、缺乏体力活动</li>
+                        <li><strong>其他因素：</strong>糖尿病、既往有结直肠腺瘤或癌症病史</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 早期症状识别</h3>
+                    <div class="highlight-box">
+                        ⚠️ 注意：早期结直肠癌往往无明显症状，这正是筛查的重要意义所在
+                    </div>
+                    <ul>
+                        <li><strong>排便习惯改变：</strong>便秘与腹泻交替、排便次数增多</li>
+                        <li><strong>便血或黑便：</strong>鲜血便、暗红色血便或柏油样便</li>
+                        <li><strong>腹部症状：</strong>腹痛、腹胀、腹部肿块</li>
+                        <li><strong>全身症状：</strong>不明原因体重下降、贫血、乏力</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>💡 筛查意义</h3>
+                    <p><strong>一级预防：</strong>通过筛查发现并切除腺瘤性息肉，阻断癌变过程</p>
+                    <p><strong>二级预防：</strong>早期发现结直肠癌，提高治愈率和生存率</p>
+                    <p><strong>证据支持：</strong>筛查可降低结直肠癌死亡率20-30%</p>
+                    <p><strong>成本效益：</strong>早期治疗费用远低于晚期治疗费用</p>
+                </div>
+            </div>
+            
+            <!-- 筛查技术模块 -->
+            <div id="screening" class="tab-content">
+                <h2 class="section-title">筛查技术详解</h2>
+                
+                <div class="card">
+                    <h3>🧪 粪便免疫化学检测 (FIT)</h3>
+                    
+                    <div class="highlight-box">
+                        FIT是目前结直肠癌筛查的重要工具，具有简便、经济、有效的特点
+                    </div>
+                    
+                    <h4>检测原理</h4>
+                    <div class="fit-demo">
+                        <p><strong>免疫化学法：</strong>利用抗体-抗原特异性结合检测粪便中的人血红蛋白</p>
+                        <p><strong>技术优势：</strong>仅检测人血红蛋白，避免食物和药物干扰</p>
+                        <p><strong>检测阈值：</strong>一般设定为100-200 ng/mL缓冲液（约20μg/g粪便）</p>
+                    </div>
+                    
+                    <h4>操作流程</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>采样准备：</strong>无需饮食限制，避免月经期采样
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>取样操作：</strong>使用专用采便器，在粪便表面多点取样
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>样本保存：</strong>密封保存于4°C，24小时内送检
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>实验室检测：</strong>全自动化学发光免疫分析
+                        </div>
+                    </div>
+                    
+                    <h4>质量控制要点</h4>
+                    <ul>
+                        <li><strong>试剂管理：</strong>严格按说明书保存，注意有效期</li>
+                        <li><strong>样本质控：</strong>确保采样充分，避免污染</li>
+                        <li><strong>设备校准：</strong>定期校准检测设备，使用质控品</li>
+                        <li><strong>结果审核：</strong>建立双人审核制度</li>
+                    </ul>
+                    
+                    <h4>诊断效能</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">93%</div>
+                            <div>结直肠癌检出敏感性</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">91%</div>
+                            <div>检测特异性</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">48%</div>
+                            <div>进展期腺瘤敏感性</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">93%</div>
+                            <div>进展期腺瘤特异性</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🔬 结果判读标准</h3>
+                    <div class="result-interpretation">
+                        <div class="result-card positive">
+                            <h4>阳性结果</h4>
+                            <p>血红蛋白浓度 ≥ 阈值</p>
+                            <p>需进一步肠镜检查</p>
+                        </div>
+                        <div class="result-card negative">
+                            <h4>阴性结果</h4>
+                            <p>血红蛋白浓度 < 阈值</p>
+                            <p>建议定期重复筛查</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 筛查流程管理</h3>
+                    <div class="algorithm">
+                        <div><strong>高危评估</strong></div>
+                        <div class="arrow">⬇️</div>
+                        <div><strong>FIT检测</strong></div>
+                        <div class="arrow">⬇️</div>
+                        <div><strong>结果判读</strong></div>
+                        <div class="arrow">⬇️</div>
+                        <div><strong>阳性→肠镜检查</strong></div>
+                        <div><strong>阴性→定期复查</strong></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 指南解读模块 -->
+            <div id="guidelines" class="tab-content">
+                <h2 class="section-title">国家指南解读</h2>
+                
+                <div class="guideline-ref">
+                    <h4>📋 主要参考指南</h4>
+                    <ul>
+                        <li>《结直肠癌筛查与早诊早治方案（2024年版）》- 国家卫生健康委</li>
+                        <li>《中国结直肠癌诊疗规范（2023版）》</li>
+                        <li>《中国社区居民结直肠癌筛查专家共识》</li>
+                        <li>《结直肠癌早筛、早诊、早治上海方案（2023年版）》</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 筛查对象</h3>
+                    <h4>适龄人群</h4>
+                    <ul>
+                        <li><strong>年龄范围：</strong>45-74岁</li>
+                        <li><strong>身体状况：</strong>一般状况良好，预期生存期≥10年</li>
+                        <li><strong>认知能力：</strong>具备完全行为能力，能够配合筛查</li>
+                    </ul>
+                    
+                    <h4>高危人群标准</h4>
+                    <ul>
+                        <li>一级亲属有结直肠癌病史</li>
+                        <li>本人有肠道腺瘤病史</li>
+                        <li>本人患有炎症性肠病</li>
+                        <li>粪便潜血试验阳性</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📊 筛查方法推荐</h3>
+                    <h4>一线筛查方法</h4>
+                    <ul>
+                        <li><strong>FIT检测：</strong>推荐间隔1年</li>
+                        <li><strong>多靶点粪便DNA检测：</strong>推荐间隔3年</li>
+                        <li><strong>结肠镜检查：</strong>推荐间隔10年</li>
+                    </ul>
+                    
+                    <h4>二线筛查方法</h4>
+                    <ul>
+                        <li><strong>CT结肠成像：</strong>推荐间隔5年</li>
+                        <li><strong>乙状结肠镜：</strong>推荐间隔5年</li>
+                        <li><strong>血清学标志物：</strong>辅助筛查工具</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>⚕️ 质量控制要求</h3>
+                    <h4>机构资质</h4>
+                    <ul>
+                        <li>具备相应医疗资质的医疗机构</li>
+                        <li>配备经过培训的专业医务人员</li>
+                        <li>建立完善的筛查流程和质控制度</li>
+                    </ul>
+                    
+                    <h4>人员要求</h4>
+                    <ul>
+                        <li>医师：具备消化内科或肿瘤科相关资质</li>
+                        <li>护理人员：掌握筛查技术操作规范</li>
+                        <li>检验人员：熟练掌握FIT检测技术</li>
+                    </ul>
+                    
+                    <h4>设备标准</h4>
+                    <ul>
+                        <li>FIT检测仪器：符合国家药监局注册要求</li>
+                        <li>内镜设备：高清电子结肠镜</li>
+                        <li>信息系统：筛查数据管理系统</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📈 效果评价指标</h3>
+                    <h4>过程指标</h4>
+                    <ul>
+                        <li><strong>参与率：</strong>目标人群筛查参与比例≥60%</li>
+                        <li><strong>完成率：</strong>FIT阳性者肠镜完成比例≥80%</li>
+                        <li><strong>随访率：</strong>筛查后规范随访比例≥90%</li>
+                    </ul>
+                    
+                    <h4>结果指标</h4>
+                    <ul>
+                        <li><strong>检出率：</strong>结直肠癌检出率≥0.2%</li>
+                        <li><strong>早期比例：</strong>早期癌症比例≥60%</li>
+                        <li><strong>腺瘤检出率：</strong>进展期腺瘤检出率≥1%</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 知识测试模块 -->
+            <div id="quiz" class="tab-content">
+                <h2 class="section-title">知识测试</h2>
+                
+                <div class="quiz-container">
+                    <h3>📝 筛查知识测评</h3>
+                    <p>以下题目旨在检验您对结直肠癌筛查相关知识的掌握程度</p>
+                    
+                    <div class="question">
+                        <h4>1. 根据最新指南，结直肠癌筛查的推荐起始年龄是？</h4>
+                        <ul class="options">
+                            <li onclick="selectAnswer(this, false)">A. 40岁</li>
+                            <li onclick="selectAnswer(this, true)">B. 45岁</li>
+                            <li onclick="selectAnswer(this, false)">C. 50岁</li>
+                            <li onclick="selectAnswer(this, false)">D. 55岁</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h4>2. FIT检测的主要优势不包括？</h4>
+                        <ul class="options">
+                            <li onclick="selectAnswer(this, false)">A. 无需饮食限制</li>
+                            <li onclick="selectAnswer(this, false)">B. 检测人血红蛋白特异性高</li>
+                            <li onclick="selectAnswer(this, true)">C. 可以检测早期腺瘤</li>
+                            <li onclick="selectAnswer(this, false)">D. 操作简便易行</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h4>3. FIT检测阳性后的标准处理流程是？</h4>
+                        <ul class="options">
+                            <li onclick="selectAnswer(this, false)">A. 重复FIT检测</li>
+                            <li onclick="selectAnswer(this, true)">B. 推荐结肠镜检查</li>
+                            <li onclick="selectAnswer(this, false)">C. CT肠道成像</li>
+                            <li onclick="selectAnswer(this, false)">D. 定期观察</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h4>4. 结直肠癌筛查可以降低死亡率约？</h4>
+                        <ul class="options">
+                            <li onclick="selectAnswer(this, false)">A. 10-15%</li>
+                            <li onclick="selectAnswer(this, true)">B. 20-30%</li>
+                            <li onclick="selectAnswer(this, false)">C. 40-50%</li>
+                            <li onclick="selectAnswer(this, false)">D. 60-70%</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="question">
+                        <h4>5. 以下哪项不是结直肠癌的主要危险因素？</h4>
+                        <ul class="options">
+                            <li onclick="selectAnswer(this, false)">A. 高脂低纤维饮食</li>
+                            <li onclick="selectAnswer(this, false)">B. 家族史</li>
+                            <li onclick="selectAnswer(this, true)">C. 高血压</li>
+                            <li onclick="selectAnswer(this, false)">D. 炎症性肠病</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="result" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px; display: none;">
+                        <h4>测试结果</h4>
+                        <p id="score-text"></p>
+                        <p id="feedback"></p>
+                    </div>
+                    
+                    <button onclick="submitQuiz()" style="background: #3498db; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 20px;">
+                        提交测试
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let quizAnswers = {};
+        let score = 0;
+        
+        function showTab(tabName) {
+            // 隐藏所有内容
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // 移除所有按钮的active类
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // 显示选中的内容和按钮
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function selectAnswer(element, isCorrect) {
+            // 获取问题编号
+            const question = element.closest('.question');
+            const questionNum = Array.from(question.parentNode.children).indexOf(question);
+            
+            // 清除同一问题的其他选择
+            const options = question.querySelectorAll('.options li');
+            options.forEach(option => {
+                option.style.background = '#f8f9fa';
+                option.style.color = '#333';
+            });
+            
+            // 高亮选中的答案
+            element.style.background = '#3498db';
+            element.style.color = 'white';
+            
+            // 保存答案
+            quizAnswers[questionNum] = isCorrect;
+        }
+        
+        function submitQuiz() {
+            // 计算得分
+            score = 0;
+            for (let answer in quizAnswers) {
+                if (quizAnswers[answer]) {
+                    score++;
+                }
+            }
+            
+            // 显示结果
+            const resultDiv = document.getElementById('result');
+            const scoreText = document.getElementById('score-text');
+            const feedback = document.getElementById('feedback');
+            
+            const percentage = (score / 5) * 100;
+            scoreText.textContent = `您的得分：${score}/5 (${percentage}%)`;
+            
+            let feedbackText = '';
+            if (percentage >= 80) {
+                feedbackText = '🎉 优秀！您对结直肠癌筛查知识掌握很好！';
+                resultDiv.style.background = '#d4edda';
+            } else if (percentage >= 60) {
+                feedbackText = '👍 良好！建议继续学习相关指南内容。';
+                resultDiv.style.background = '#fff3cd';
+            } else {
+                feedbackText = '📚 需要加强学习！请重新复习基础知识和指南内容。';
+                resultDiv.style.background = '#f8d7da';
+            }
+            
+            feedback.textContent = feedbackText;
+            resultDiv.style.display = 'block';
+        }
+        
+        // 页面加载时显示第一个标签页
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('basics');
+        });
+    </script>
+</body>
+</html>
